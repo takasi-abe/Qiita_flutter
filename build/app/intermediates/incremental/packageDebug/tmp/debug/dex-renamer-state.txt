@@ -1,4 +1,4 @@
-#Fri Apr 10 00:19:27 JST 2020
-base.0=/Users/cries/workspace/Practice/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+#Tue May 12 13:37:50 JST 2020
+base.0=/Users/cries/workspace/Qiita_flutter/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
