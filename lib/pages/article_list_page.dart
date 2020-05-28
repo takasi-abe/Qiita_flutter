@@ -1,7 +1,6 @@
 import 'package:Practice/listview_widget/article_list_widget.dart';
 import 'package:Practice/provider/listview_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class ArticleListPage extends StatelessWidget {
   final ListViewProvider listViewProvider = ListViewProvider();
@@ -15,7 +14,10 @@ class ArticleListPage extends StatelessWidget {
         ),
         backgroundColor: Colors.pink[100],
       ),
-      body: Center(child: ArticleListWidget()),
+      body: Container(
+        decoration: BoxDecoration(color: Colors.pink[50]),
+        alignment: Alignment.center,
+        child: ArticleListWidget()),
     );
   }
 }

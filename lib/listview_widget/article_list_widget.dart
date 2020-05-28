@@ -45,41 +45,54 @@ class ArticleListWidgetState extends State<ArticleListWidget> {
   Widget creatArticleCard(Article article) {
     Widget articleCard = Container(
       width: 300,
-      height: 200,
+      height: 150,
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
         child: Row(
           children: [
-            Container(
-              width: 50,
-              height: 50,
-              child: Image.network(article.user["profile_image_url"], scale: 0.1),
+            Expanded(
+              flex: 1,
+              child: Align(
+                alignment: Alignment.center,
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        image: NetworkImage(
+                          article.user["profile_image_url"],
+                          scale: 3.0,
+                        ),
+                        fit: BoxFit.fill),
+                  ),
+                ),
+              ),
             ),
-            Flexible(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    flex: 5,
-                    child: Text(
+            Expanded(
+              flex: 4,
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
                       article.title,
                       style: TextStyle(
-                        fontSize: 32,
+                        fontSize: 16,
                       ),
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                  Expanded(
-                    flex: 4,
-                    child: Text(
-                      article.user["name"] ?? "noName",
-                      style: TextStyle(fontSize: 24, color: Colors.black),
+                    SizedBox(
+                      height: 20,
                     ),
-                  ),
-                ],
+                    userName("@ ${article.user["name"]}")
+                  ],
+                ),
               ),
             ),
           ],
@@ -88,5 +101,20 @@ class ArticleListWidgetState extends State<ArticleListWidget> {
     );
 
     return articleCard;
+  }
+
+  Widget userName(String userName) {
+    Widget userNameText;
+    TextStyle textStyle = TextStyle(fontSize: 12, color: Colors.black);
+    if (userName == "@ ") {
+      userName = "noName";
+      textStyle.color.withOpacity(1.0);
+    }
+
+    userNameText = Text(
+      userName,
+      style: textStyle,
+    );
+    return userNameText;
   }
 }
