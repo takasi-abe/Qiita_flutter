@@ -36,8 +36,7 @@ class GetArticleService {
 
   Future<List<Article>> fetchArticleList() async {
     List<Article> articleList = [];
-    final response = await http.get("https://qiita.com/api/v2/items?page=1&per_page=5").catchError(onError);
-    _debugPrint("https://qiita.com/api/v2/items", response);
+    final response = await http.get("https://qiita.com/api/v2/items?page=1&per_page=5");
 
     List responseBody = jsonDecode(response.body);
 
@@ -46,16 +45,5 @@ class GetArticleService {
     });
 
     return articleList;
-  }
-
-    /// デバッグ用の標準出力メソッド
-  void _debugPrint(String url, http.Response res) {
-    print("$this: Url => $url");
-    print("$this: StatusCode => ${res?.statusCode}");
-    // Internal server errorだとレスポンスにLalavelのエラーが返ってくることがあるため
-    // ステータスコードが400未満のときのみレスポンスのバディを表示する
-    if (res != null && res.statusCode < 400) {
-      print("$this: ResponseBody => ${res?.body}");
-    }
   }
 }
